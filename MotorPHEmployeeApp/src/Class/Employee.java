@@ -11,13 +11,55 @@ import java.util.*;
  *
  * @author 63909
  */
-public class Employee {
-    private double totalHoursWorked, totalAllowance, grossSalary, netSalary;
-    private double sssContri, philhealthContri, pagibigContri;
-    private double totalDeductions, withHTax;
-    private String employeeID;
-    private ArrayList<String> dataFile;
-    private HashMap<String,String[]> employeeMap = new HashMap<String,String[]>();
+public final class Employee {
+    private String[] information;    
+    
+    public Employee(String[] information) {
+        this.information = information;
+        setEmployeeID(information[0]);
+        setLastName(information[1]);
+        setFirstName(information[2]);
+        setBirthday(information[3]);
+        setAddress(information[4]);
+        setPhoneNumber(information[5]);
+        setSSSNumber(information[6]);
+        setPhilhealthNumber(information[7]);
+        setTinNumber(information[8]);
+        setPagibigNumber(information[9]);
+        setEmploymentStatus(information[10]);
+        setPosition(information[11]);
+        setImmediateSupervisor(information[12]);
+        setBasicSalary(Double.parseDouble(information[13].replace(",", "")));
+        setRiceSubsidy(Double.parseDouble(information[14].replace(",", "")));
+        setPhoneAllowance(Double.parseDouble(information[15].replace(",", "")));
+        setClothingAllowance(Double.parseDouble(information[16].replace(",", "")));
+        setGrossSemiMonthlyRate(Double.parseDouble(information[17].replace(",", "")));
+        setHourlyRate(Double.parseDouble(information[18]));
+    }
+    
+    public Employee() {
+        
+    }
+    
+    public String[] getInformation() {
+        return information;
+    }
+    public void setInformation(String[] information) {
+        this.information = information;
+    } 
+
+    private String payPeriod;
+
+    public String getPayPeriod() {
+        return payPeriod;
+    }
+    public void setPayPeriod(String payPeriod) {
+        this.payPeriod = payPeriod;
+    }
+
+    
+    private ArrayList<String[]> dataFile;
+    private HashMap<String,String[]> employeeMap;
     
     //Personal Information
     private String lastName, firstName;
@@ -62,15 +104,13 @@ public class Employee {
     public void setAddress(String address) {
             this.address = address;
     }
-
-
+  
     public String getPhoneNumber() {
             return phoneNumber;
     }
     public void setPhoneNumber(String phoneNumber) {
             this.phoneNumber = phoneNumber;
     }
-
 
     public String getSSSNumber() {
             return sssNumber;
@@ -161,7 +201,7 @@ public class Employee {
     }
     public void setHourlyRate(double hourlyRate) {
             this.hourlyRate = hourlyRate;
-    }	
+    }
 
     public String getEmployeeID() {
         return employeeID;
@@ -239,16 +279,17 @@ public class Employee {
         this.withHTax = withHTax;
     }        
             
-    public void setEmployeerMap(ArrayList<String> dataFile) {
+    public void setEmployeerMap(ArrayList<String[]> dataFile) {
         this.dataFile = dataFile;
         this.employeeMap = new HashMap<String, String[]>();
-            
-        for (String i : this.dataFile){
-            String[] row = i.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-            this.employeeMap.put(row[0],row);
-        }                    
+        
+        for (String[] i : this.dataFile){
+            this.employeeMap.put(i[0],i);
+        }        
+        
     }        
     public HashMap<String, String[]> getEmployeeMap() {
         return employeeMap;
-    }                                          
+    }  
+
 }

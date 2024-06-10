@@ -43,7 +43,6 @@ public class LoginPage extends javax.swing.JFrame {
         setTitle("MotorPh - Login");
 
         jLabelUsername.setText("Username");
-
         jLabelPassword.setText("Password");
 
         jButtonLogin.setText("Login");
@@ -56,7 +55,7 @@ public class LoginPage extends javax.swing.JFrame {
         jPasswordFieldPassword.setToolTipText("");
 
         jLabelIncorrectCredentials.setForeground(java.awt.Color.red);
-        jLabelIncorrectCredentials.setText("Incorrect Username and Password");
+        jLabelIncorrectCredentials.setText("Incorrect Username or Password");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,7 +78,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelIncorrectCredentials)
                             .addComponent(jPasswordFieldPassword))))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +95,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(jLabelIncorrectCredentials)
                 .addGap(14, 14, 14)
                 .addComponent(jButtonLogin)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,13 +110,14 @@ public class LoginPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
         String username = jTextFieldUsername.getText(); 
         String password = jPasswordFieldPassword.getText();
-        ArrayList<String> userList = new ArrayList<>();
+        ArrayList<String[]> userList = new ArrayList<>();
         
         File userFile = new File();
         userFile.setFilePath("src/MotorPH Employee Data - User Details.csv");
@@ -126,15 +126,14 @@ public class LoginPage extends javax.swing.JFrame {
         UserAccount userAccount = new UserAccount();
         userAccount.setUserMap(userList);
         
-        if (!userAccount.loggingIn(username, password)) {
+        if (!userAccount.isLoggingInSuccess(username, password)) {
                 jLabelIncorrectCredentials.setVisible(true);
                 return;
             }
-        
-        String[] userInfo = userAccount.getUserMap().get(username);
-        ProfilePage profilePage = new ProfilePage(userInfo[1]);
-            profilePage.setVisible(userAccount.loggingIn(username, password));           
-            jLabelUsername.setText(username);
+
+        EmployeeListPage employeeListPage = new EmployeeListPage(userAccount);
+        employeeListPage.setVisible(true);
+        dispose();          
             
         
     }//GEN-LAST:event_jButtonLoginActionPerformed

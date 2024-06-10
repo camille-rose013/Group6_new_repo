@@ -4,6 +4,8 @@
  */
 package Class;
 
+
+import java.util.*;
 /**
  *
  * @author 63909
@@ -13,11 +15,18 @@ public class Attendance {
 	private String timeIn;
 	private String timeOut;
 	private double hoursInShift, hoursOutShift;
-	private double hoursIn, hoursOut, hoursLate, hoursUT, hoursOT, hoursBreak;
+	private double hoursIn, hoursOut, hoursLate, hoursUT, hoursOT, hoursBreak = 1;
 	private double minIn, minOut, minLate, minUT, minOT;
-	private double minWorked, hoursWorked;
+	private double minWorked, hoursWorked, totalWorkedHours;        
+        
+    public double calculateAttendance(ArrayList<String[]> attendance){
+        for (String[] i : attendance){
+            totalWorkedHours += calculateHours(i[0],i[1]);
+        }
+        return totalWorkedHours;
+    }
     
-    public double CalculateHours(String timeIn, String timeOut) {
+    public double calculateHours(String timeIn, String timeOut) {
     	if (!"".equals(timeIn) && !"".equals(timeOut)) {
     		hoursIn = Integer.parseInt(timeIn.split(":")[0]);
             minIn = Integer.parseInt(timeIn.split(":")[1]);
@@ -176,7 +185,6 @@ public class Attendance {
 	public double getMinUT() {
 		return minUT;
 	}
-
 	public void setMinUT(double minUT) {
 		this.minUT = minUT;
 	}
@@ -184,7 +192,6 @@ public class Attendance {
 	public double getMinOT() {
 		return minOT;
 	}
-
 	public void setMinOT(double minOT) {
 		this.minOT = minOT;
 	}
@@ -192,15 +199,13 @@ public class Attendance {
 	public double getMinWorked() {
 		return minWorked;
 	}
-
 	public void setMinWorked(double minWorked) {
 		this.minWorked = minWorked;
 	}
 	
 	public double getHoursWorked() {
 		return hoursWorked;
-	}
-	
+	}	
 	public void setHoursWorked(double hoursWorked) {
 		this.hoursWorked = hoursWorked;
 	}
