@@ -20,7 +20,6 @@ public final class UserAccount {
     //private UserRole role;
     private HashMap<String,String[]> userMap; // Map to store user data for quick lookup
     private String[] userInfo; // Array to store information about a specific user
-    private String[] accountInfo;
            
     // getters and setters
     public String getUserID() {
