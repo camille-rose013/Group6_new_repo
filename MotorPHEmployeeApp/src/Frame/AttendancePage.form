@@ -7,7 +7,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -110,6 +110,9 @@
               <Image iconType="3" name="/back.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRetrunActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxPayPeriod">
           <Properties>
@@ -156,6 +159,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -163,6 +167,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Compute Payroll"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonComputePayrollActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelAttendance">
           <Properties>

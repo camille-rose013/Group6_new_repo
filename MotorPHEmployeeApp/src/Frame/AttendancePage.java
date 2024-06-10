@@ -5,10 +5,12 @@
 package Frame;
 
 import Class.Attendance;
+import Class.Employee;
 import Class.File;
 import Class.Input;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +21,7 @@ public class AttendancePage extends javax.swing.JFrame {
 
     /**s
      * Creates new form PayrollPage
+     * * @param employee
      */
     DefaultTableModel attendanceTableModel;
     File scheduleFile = null;
@@ -30,15 +33,22 @@ public class AttendancePage extends javax.swing.JFrame {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
     SimpleDateFormat computeTimeFormat = new SimpleDateFormat("HH:mm");
-    
-    public AttendancePage() {
+    Employee employee;    
+      
+    public AttendancePage(Employee employee) {
+        this.employee = employee;
         initComponents();        
-        populateCombobox();        
+        populateCombobox();
+
+        jLabelInputID.setText(employee.getEmployeeID());
+        jLabelInputName.setText(employee.getLastName() + ", "+ employee.getFirstName());
         
         attendanceFile = new File();
-        attendanceList = attendanceFile.readFile("src/MotorPH Employee Data - Attendace.csv");
-        
-        
+        attendanceList = attendanceFile.readFile("src/MotorPH Employee Data - Attendace.csv");           
+    }
+
+    private AttendancePage() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     private void populateCombobox(){
@@ -77,7 +87,7 @@ public class AttendancePage extends javax.swing.JFrame {
                 attendanceTableModel.setColumnIdentifiers(tableHeader);
                 continue;
             }
-            if (i[0].equals("10001")) {
+            if (i[0].equals(employee.getEmployeeID())) {
                 Date attendanceDate = input.toDate(i[1]);
                 Date timeIn = input.toTime(i[2]);
                 Date timeOut = input.toTime(i[3]);
@@ -107,10 +117,14 @@ public class AttendancePage extends javax.swing.JFrame {
         }        
         
         jTextFieldTotalWorkedHours.setText(String.valueOf((int)attendance.calculateAttendance(employeeAttendanceList)));
-        jTableAttendance.setModel(attendanceTableModel);
-    }    
+        jTableAttendance.setModel(attendanceTableModel);        
+    }
     
-
+    private boolean isThereAttendance() {        
+        String attendance = jTextFieldTotalWorkedHours.getText();
+        return !attendance.isBlank() && !attendance.equals("0");
+    }
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,6 +153,11 @@ public class AttendancePage extends javax.swing.JFrame {
         setTitle("MotorPH - Attendance");
 
         jButtonRetrun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jButtonRetrun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetrunActionPerformed(evt);
+            }
+        });
 
         jComboBoxPayPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,9 +181,15 @@ public class AttendancePage extends javax.swing.JFrame {
         jLabelTotalWorkedHours.setText("Total Worked Hours:");
 
         jTextFieldTotalWorkedHours.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTextFieldTotalWorkedHours.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextFieldTotalWorkedHours.setEnabled(false);
 
         jButtonComputePayroll.setText("Compute Payroll");
+        jButtonComputePayroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonComputePayrollActionPerformed(evt);
+            }
+        });
 
         jLabelAttendance.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelAttendance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -275,11 +300,12 @@ public class AttendancePage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxPayPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPayPeriodActionPerformed
         // TODO add your handling code here:
-        if (jComboBoxPayPeriod.getSelectedIndex() == 0) {
+        if (jComboBoxPayPeriod.getSelectedIndex() == 0) {             
             return;
         }
         String[] dates = jComboBoxPayPeriod.getSelectedItem().toString().split(":");
@@ -303,8 +329,27 @@ public class AttendancePage extends javax.swing.JFrame {
             calendar.add(Calendar.DATE, 1);
         }
         
+        employee.setPayPeriod((String) jComboBoxPayPeriod.getSelectedItem());
+        
         setTableModel(dateList);
     }//GEN-LAST:event_jComboBoxPayPeriodActionPerformed
+
+    private void jButtonComputePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComputePayrollActionPerformed
+        // TODO add your handling code here:
+        if (!isThereAttendance()) {
+            JOptionPane.showMessageDialog(null, "No Attendance Found");
+            return;
+        }
+        employee.setTotalHoursWorked(Double.parseDouble(jTextFieldTotalWorkedHours.getText()));
+        
+        PayrollPage payrollPage = new PayrollPage(employee);
+        payrollPage.setVisible(isThereAttendance());
+        dispose();
+    }//GEN-LAST:event_jButtonComputePayrollActionPerformed
+
+    private void jButtonRetrunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetrunActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     /**
      * @param args the command line arguments

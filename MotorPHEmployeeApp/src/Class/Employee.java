@@ -11,14 +11,59 @@ import java.util.*;
  *
  * @author 63909
  */
-public class Employee {
+public final class Employee {
+    private String[] information;    
+    
+    public Employee(String[] information) {
+        this.information = information;
+        setEmployeeID(information[0]);
+        setLastName(information[1]);
+        setFirstName(information[2]);
+        setBirthday(information[3]);
+        setAddress(information[4]);
+        setPhoneNumber(information[5]);
+        setSSSNumber(information[6]);
+        setPhilhealthNumber(information[7]);
+        setTinNumber(information[8]);
+        setPagibigNumber(information[9]);
+        setEmploymentStatus(information[10]);
+        setPosition(information[11]);
+        setImmediateSupervisor(information[12]);
+        setBasicSalary(Double.parseDouble(information[13].replace(",", "")));
+        setRiceSubsidy(Double.parseDouble(information[14].replace(",", "")));
+        setPhoneAllowance(Double.parseDouble(information[15].replace(",", "")));
+        setClothingAllowance(Double.parseDouble(information[16].replace(",", "")));
+        setGrossSemiMonthlyRate(Double.parseDouble(information[17].replace(",", "")));
+        setHourlyRate(Double.parseDouble(information[18]));
+    }
+    
+    public Employee() {
+        
+    }
+    
+    public String[] getInformation() {
+        return information;
+    }
+    public void setInformation(String[] information) {
+        this.information = information;
+    }  
+        
     private double totalHoursWorked, totalAllowance, grossSalary, netSalary;
     private double sssContri, philhealthContri, pagibigContri;
     private double totalDeductions, withHTax;
     private String employeeID;
+    private String payPeriod;
+
+    public String getPayPeriod() {
+        return payPeriod;
+    }
+    public void setPayPeriod(String payPeriod) {
+        this.payPeriod = payPeriod;
+    }
+
+    
     private ArrayList<String[]> dataFile;
     private HashMap<String,String[]> employeeMap;
-    private ArrayList<Employee[]> employees;
     
     //Personal Information
     private String lastName, firstName;
@@ -160,7 +205,7 @@ public class Employee {
     }
     public void setHourlyRate(double hourlyRate) {
             this.hourlyRate = hourlyRate;
-    }	
+    }
 
     public String getEmployeeID() {
         return employeeID;
@@ -249,15 +294,6 @@ public class Employee {
     }        
     public HashMap<String, String[]> getEmployeeMap() {
         return employeeMap;
-    }
-    
-    public void setEmployees(ArrayList<String[]> dataFile) {
-        this.dataFile = dataFile;
-        
-        for (String[] i : this.dataFile) {
-           
-           Employee employee = new Employee();
-           
-        }
-    }
+    }    
+
 }

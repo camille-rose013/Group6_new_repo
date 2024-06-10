@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author 63909
  */
-public class UserAccount {    
+public final class UserAccount {    
     private String userID;
     private String username;
     private String password;
@@ -20,8 +20,8 @@ public class UserAccount {
     //private UserRole role;
     private HashMap<String,String[]> userMap; // Map to store user data for quick lookup
     private String[] userInfo; // Array to store information about a specific user
-    
-    
+    private String[] accountInfo;
+           
     // getters and setters
     public String getUserID() {
         return userID;
@@ -76,6 +76,8 @@ public class UserAccount {
             // Checks if the password matches the stored password for the username
             if(this.userMap.get(this.username)[3].equals(this.password)){
                 logginInResult = true; // Authentication successful
+                this.username = username;
+                this.password = password;
             } else {
                 logginInResult = false; // Incorrect password
             }

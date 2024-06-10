@@ -110,6 +110,7 @@ public class LoginPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -130,11 +131,9 @@ public class LoginPage extends javax.swing.JFrame {
                 return;
             }
         
-        String[] userInfo = userAccount.getUserMap().get(username);
-        System.out.println(Arrays.toString(userInfo));
-        ProfilePage profilePage = new ProfilePage(userInfo);
-            
-            profilePage.setVisible(userAccount.isLoggingInSuccess(username, password));           
+        EmployeeListPage employeeListPage = new EmployeeListPage(userAccount);
+        employeeListPage.setVisible(true);
+        dispose();           
             
         
     }//GEN-LAST:event_jButtonLoginActionPerformed

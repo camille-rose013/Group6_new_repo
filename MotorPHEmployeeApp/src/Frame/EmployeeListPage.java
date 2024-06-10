@@ -4,6 +4,7 @@
  */
 package Frame;
 
+import Class.Employee;
 import Class.File;
 import Class.Input.*;
 import Class.Input;
@@ -24,13 +25,15 @@ public class EmployeeListPage extends javax.swing.JFrame {
      * Creates new form EmployeesListPage
      * @param userInfo
      */
+    
     File employeeFile = null;
     ArrayList<String[]> employeeList = null;
-    DefaultTableModel employeeTableModel;    
+    DefaultTableModel employeeTableModel;
+    UserAccount userInfo;    
     
-    public EmployeeListPage(/*UserAccount userInfo*/) {        
-        
+    public EmployeeListPage(UserAccount userInfo) {
         initComponents();
+        this.userInfo = userInfo;
         
         jLabelInputError.setVisible(false);
         
@@ -44,10 +47,8 @@ public class EmployeeListPage extends javax.swing.JFrame {
         employeeFile = new File();
         employeeList = employeeFile.readFile("src/MotorPH Employee Data - Employee Details.csv");     
         
-        tableModel(employeeList);        
-             
-        /*this.userInfo = userInfo;*/
-        
+        tableModel(employeeList);       
+    
     }
     
     private void tableModel(ArrayList<String[]> employeeList) {
@@ -96,10 +97,18 @@ public class EmployeeListPage extends javax.swing.JFrame {
         jTextFieldTINID.setText("");
         jLabelInputError.setVisible(false);
     }
+    
+    private boolean isSelectRecord() {
+        if((jTableEmployee.getSelectedRowCount() != 1) || jTextFieldEmployeeID.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Please Select one Employee Record");
+            return true;            
+        }
+        return false;
+    }
 
-    /*private EmployeeListPage() {
+    private EmployeeListPage() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,7 +209,12 @@ public class EmployeeListPage extends javax.swing.JFrame {
             }
         });
 
-        jButtonRetrun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jButtonRetrun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout.png"))); // NOI18N
+        jButtonRetrun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetrunActionPerformed(evt);
+            }
+        });
 
         jLabelInputError.setForeground(java.awt.Color.red);
         jLabelInputError.setText("jLabel1");
@@ -238,7 +252,6 @@ public class EmployeeListPage extends javax.swing.JFrame {
                             .addComponent(jLabelPhilHealthID)
                             .addGap(18, 18, 18)
                             .addComponent(jTextFieldPhilHealthID, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jButtonRetrun)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +274,8 @@ public class EmployeeListPage extends javax.swing.JFrame {
                                             .addComponent(jButtonView, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(32, 32, 32)))))
+                                    .addGap(32, 32, 32))))
+                        .addComponent(jButtonRetrun))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabelInputError)))
@@ -282,8 +296,8 @@ public class EmployeeListPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButtonRetrun, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152)
+                .addComponent(jButtonRetrun)
+                .addGap(136, 136, 136)
                 .addComponent(jLabelInputError)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -334,13 +348,13 @@ public class EmployeeListPage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         // TODO add your handling code here:
-        if((jTableEmployee.getSelectedRowCount() != 1) || jTextFieldEmployeeID.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Please Select an Employee Record");
-            return;            
+        if (isSelectRecord()) {
+            return;
         }
         
         Input input = new Input();        
@@ -405,6 +419,34 @@ public class EmployeeListPage extends javax.swing.JFrame {
 
     private void jButtonViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewActionPerformed
         // TODO add your handling code here:
+        if (isSelectRecord()) {
+            return;
+        }
+        
+        boolean isFound = false;
+        String employeeID;
+        String[] employeeInformation = null;
+        
+        employeeFile = new File();
+            employeeList = employeeFile.readFile("src/MotorPH Employee Data - Employee Details.csv");
+        
+        employeeID = jTextFieldEmployeeID.getText();       
+               
+        
+        for (String[] i : employeeList) {
+            if (i[0].equals(employeeID)) {
+                isFound = true;
+                employeeInformation = i;
+                break;
+            }
+        }
+        
+        Employee employee = new Employee(employeeInformation);
+        
+        AttendancePage attendancePage = new AttendancePage(employee);
+        attendancePage.setVisible(isFound);
+        dispose();
+        
     }//GEN-LAST:event_jButtonViewActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
@@ -415,9 +457,8 @@ public class EmployeeListPage extends javax.swing.JFrame {
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-        if((jTableEmployee.getSelectedRowCount() != 1) || jTextFieldEmployeeID.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Please Select an Employee Record");
-            return;            
+        if (isSelectRecord()) {
+            return;
         }
         
         int result = JOptionPane.showConfirmDialog(null, "Are you sure to delete the Employee Record", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -452,6 +493,13 @@ public class EmployeeListPage extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "Successfully Deleted");    
     }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonRetrunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetrunActionPerformed
+        // TODO add your handling code here:
+        LoginPage loginPage = new LoginPage();
+        loginPage.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     /**
      * @param args the command line arguments
