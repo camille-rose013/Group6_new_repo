@@ -627,6 +627,7 @@ public class ProfilePage extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jTextFieldRiceSubsidy, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanelSalaryLayout.createSequentialGroup()
+
                                                 .addComponent(jLabelBasicSalary)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(jTextFieldBasicSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -713,6 +714,7 @@ public class ProfilePage extends javax.swing.JFrame {
         jButtonCalculateSalary.setBackground(new java.awt.Color(242, 242, 242));
         jButtonCalculateSalary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/payroll.png"))); // NOI18N
 
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -743,7 +745,6 @@ public class ProfilePage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         // TODO add your handling code here:
         jButtonEdit.setVisible(true);

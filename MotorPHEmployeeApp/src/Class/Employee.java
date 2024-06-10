@@ -46,12 +46,8 @@ public final class Employee {
     }
     public void setInformation(String[] information) {
         this.information = information;
-    }  
-        
-    private double totalHoursWorked, totalAllowance, grossSalary, netSalary;
-    private double sssContri, philhealthContri, pagibigContri;
-    private double totalDeductions, withHTax;
-    private String employeeID;
+    } 
+
     private String payPeriod;
 
     public String getPayPeriod() {
@@ -108,7 +104,7 @@ public final class Employee {
     public void setAddress(String address) {
             this.address = address;
     }
-
+  
     public String getPhoneNumber() {
             return phoneNumber;
     }
@@ -294,6 +290,6 @@ public final class Employee {
     }        
     public HashMap<String, String[]> getEmployeeMap() {
         return employeeMap;
-    }    
+    }  
 
 }

@@ -65,7 +65,7 @@ public class Salary {
         this.hourlyRate = hourlyRate;
         System.out.println();
     }
-    
+
     public double calculateBasicSalary (double hoursWorked, double hourlyRate) {
         salary = (hoursWorked * hourlyRate);
         return salary;

@@ -20,7 +20,7 @@ public final class UserAccount {
     //private UserRole role;
     private HashMap<String,String[]> userMap; // Map to store user data for quick lookup
     private String[] userInfo; // Array to store information about a specific user
-           
+
     // getters and setters
     public String getUserID() {
         return userID;
@@ -65,7 +65,7 @@ public final class UserAccount {
     public void setUserInfo(String[] userInfo) {
         this.userInfo = userInfo;
     }
-
+  
     public boolean isLoggingInSuccess(String username, String password) {
         this.username = username; // Sets the username
         this.password = password; // Sets the password        

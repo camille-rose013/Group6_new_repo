@@ -4,6 +4,7 @@
  */
 package Frame;
 
+import Class.Employee;
 import Class.File;
 import Class.UserAccount;
 import java.util.*;
@@ -31,7 +32,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelLoginUsername = new javax.swing.JLabel();
+        jLabelUsername = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
         jTextFieldUsername = new javax.swing.JTextField();
         jButtonLogin = new javax.swing.JButton();
@@ -41,8 +42,7 @@ public class LoginPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MotorPh - Login");
 
-        jLabelLoginUsername.setText("Username");
-
+        jLabelUsername.setText("Username");
         jLabelPassword.setText("Password");
 
         jButtonLogin.setText("Login");
@@ -68,7 +68,7 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(jButtonLogin))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
-                        .addComponent(jLabelLoginUsername)
+                        .addComponent(jLabelUsername)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -86,7 +86,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLoginUsername))
+                    .addComponent(jLabelUsername))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -130,10 +130,10 @@ public class LoginPage extends javax.swing.JFrame {
                 jLabelIncorrectCredentials.setVisible(true);
                 return;
             }
-        
+
         EmployeeListPage employeeListPage = new EmployeeListPage(userAccount);
         employeeListPage.setVisible(true);
-        dispose();           
+        dispose();          
             
         
     }//GEN-LAST:event_jButtonLoginActionPerformed
@@ -176,8 +176,8 @@ public class LoginPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabelIncorrectCredentials;
-    private javax.swing.JLabel jLabelLoginUsername;
     private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelUsername;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JTextField jTextFieldUsername;
