@@ -47,7 +47,10 @@ public final class Employee {
     public void setInformation(String[] information) {
         this.information = information;
     } 
-
+    private double totalHoursWorked, totalAllowance, grossSalary, netSalary;
+    private double sssContri, philhealthContri, pagibigContri;
+    private double totalDeductions, withHTax;
+    private String employeeID;
     private String payPeriod;
 
     public String getPayPeriod() {
