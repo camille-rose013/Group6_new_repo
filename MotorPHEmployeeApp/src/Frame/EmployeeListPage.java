@@ -37,6 +37,8 @@ public class EmployeeListPage extends javax.swing.JFrame {
         
         jLabelInputError.setVisible(false);
         
+        jLabelUsername.setText(this.userInfo.getUsername());
+        
         jTextFieldPagIBIGID.getDocument().addDocumentListener(new ValidationListener(jTextFieldPagIBIGID, jLabelInputError, "PagIBIG ID", 12));
         jTextFieldPhilHealthID.getDocument().addDocumentListener(new ValidationListener(jTextFieldPhilHealthID, jLabelInputError, "PhilHealth ID", 12 ));
         jTextFieldSSSID.getDocument().addDocumentListener(new ValidationListener(jTextFieldSSSID, jLabelInputError, "SSS ID", 10));
@@ -275,7 +277,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(32, 32, 32))))
-                        .addComponent(jButtonRetrun))
+                        .addComponent(jButtonRetrun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabelInputError)))

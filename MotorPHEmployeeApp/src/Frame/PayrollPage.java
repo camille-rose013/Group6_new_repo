@@ -56,7 +56,7 @@ public class PayrollPage extends javax.swing.JFrame {
         jTextFieldRiceSubsidy.setText(decimalFormat.format(employee.getRiceSubsidy()/2));
         jTextFieldPhoneAllowance.setText(decimalFormat.format(employee.getPhoneAllowance()/2));
         jTextFieldClothingAllowance.setText(decimalFormat.format(employee.getClothingAllowance()/2));        
-        jTextFieldGrossSalary.setText(Double.toString(gross));        
+        jTextFieldGrossSalary.setText(decimalFormat.format(gross));        
         
         jTextFieldSSS.setText(decimalFormat.format(sss));
         jTextFieldPhilHealth.setText(decimalFormat.format(philhealth));
