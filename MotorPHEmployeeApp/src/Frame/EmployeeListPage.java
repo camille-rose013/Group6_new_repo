@@ -29,10 +29,11 @@ public class EmployeeListPage extends javax.swing.JFrame {
     File employeeFile = null;
     ArrayList<String[]> employeeList = null;
     DefaultTableModel employeeTableModel;
-    UserAccount userInfo;    
-    
-    public EmployeeListPage(UserAccount userInfo) {
+    UserAccount userInfo;  
+  
+    public EmployeeListPage(UserAccount userInfo) { 
         initComponents();
+        
         this.userInfo = userInfo;
         
         jLabelInputError.setVisible(false);
@@ -276,11 +277,11 @@ public class EmployeeListPage extends javax.swing.JFrame {
                                             .addComponent(jButtonView, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(jButtonUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(32, 32, 32))))
-                        .addComponent(jButtonRetrun, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(32, 32, 32)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
-                        .addComponent(jLabelInputError)))
+                        .addComponent(jLabelInputError))
+                    .addComponent(jButtonRetrun))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -444,7 +445,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
         }
         
         Employee employee = new Employee(employeeInformation);
-        
+        employee.setUserAccount(this.userInfo);
         AttendancePage attendancePage = new AttendancePage(employee);
         attendancePage.setVisible(isFound);
         dispose();

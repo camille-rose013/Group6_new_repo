@@ -349,6 +349,9 @@ public class AttendancePage extends javax.swing.JFrame {
 
     private void jButtonRetrunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetrunActionPerformed
         // TODO add your handling code here:
+        EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
+        employeeListPage.setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     /**

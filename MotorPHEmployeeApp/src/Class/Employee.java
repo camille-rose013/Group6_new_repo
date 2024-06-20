@@ -12,7 +12,16 @@ import java.util.*;
  * @author 63909
  */
 public final class Employee {
-    private String[] information;    
+    private String[] information;
+    private UserAccount userAccount;
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
     
     public Employee(String[] information) {
         this.information = information;
