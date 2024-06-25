@@ -23,7 +23,7 @@ public class PayrollPage extends javax.swing.JFrame {
     double basicSalary, totalAllowance, gross;
     double sss, philhealth, pagibig, withHoldingTax, govermentContribution, totalDeduction;
     double netSalary;
-    DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
     
     public PayrollPage(Employee employee) {
         initComponents();
@@ -62,6 +62,7 @@ public class PayrollPage extends javax.swing.JFrame {
         jTextFieldPhilHealth.setText(decimalFormat.format(philhealth));
         jTextFieldPagIBIG.setText(decimalFormat.format(pagibig));
         jTextFieldWitholdingTax.setText(decimalFormat.format(withHoldingTax)); 
+        System.out.print(withHoldingTax);
         jTextFieldTotalDeductions.setText(decimalFormat.format(totalDeduction));
                
         
@@ -138,36 +139,43 @@ public class PayrollPage extends javax.swing.JFrame {
 
         jLabelBasicSalary2.setText("Basic Salary:");
 
+        jTextFieldBasicSalary2.setEditable(false);
         jTextFieldBasicSalary2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        jTextFieldRiceSubsidy.setEditable(false);
         jTextFieldRiceSubsidy.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelRiceSubsidy.setText("Rice Subsidy:");
 
         jLabelPhoneAllowance.setText("Phone Allowance:");
 
+        jTextFieldPhoneAllowance.setEditable(false);
         jTextFieldPhoneAllowance.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelClothingAllowance.setText("Clothing Allowance:");
 
+        jTextFieldClothingAllowance.setEditable(false);
         jTextFieldClothingAllowance.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelHoursWorked.setText("Hours Worked:");
 
         jLabelHourlyRate.setText("Hourly Rate:");
 
+        jTextFieldHoursWorked.setEditable(false);
         jTextFieldHoursWorked.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextFieldHoursWorked.setEnabled(false);
 
+        jTextFieldHourlyRate.setEditable(false);
         jTextFieldHourlyRate.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelBasicSalary1.setText("Basic Salary:");
 
+        jTextFieldBasicSalary1.setEditable(false);
         jTextFieldBasicSalary1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelGrossSalary.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabelGrossSalary.setText("Gross Salary:");
 
+        jTextFieldGrossSalary.setEditable(false);
         jTextFieldGrossSalary.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldGrossSalary.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -313,23 +321,28 @@ public class PayrollPage extends javax.swing.JFrame {
 
         jLabelWitholdingTax.setText("Witholding Tax:");
 
+        jTextFieldWitholdingTax.setEditable(false);
         jTextFieldWitholdingTax.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
+        jTextFieldSSS.setEditable(false);
         jTextFieldSSS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelSSS.setText("SSS:");
 
         jLabelPhilHealth.setText("PhilHealth:");
 
+        jTextFieldPhilHealth.setEditable(false);
         jTextFieldPhilHealth.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelPagIBIG.setText("Pag-IBIG:");
 
+        jTextFieldPagIBIG.setEditable(false);
         jTextFieldPagIBIG.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabelTotalDeductions.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabelTotalDeductions.setText("Total Deductions:");
 
+        jTextFieldTotalDeductions.setEditable(false);
         jTextFieldTotalDeductions.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldTotalDeductions.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 

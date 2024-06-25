@@ -146,6 +146,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
         jLabelInputError = new javax.swing.JLabel();
         jLabelUserProfile = new javax.swing.JLabel();
         jLabelUsername = new javax.swing.JLabel();
+        jButtonLeaveForm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH - Emloyee Table");
@@ -227,6 +228,13 @@ public class EmployeeListPage extends javax.swing.JFrame {
         jLabelUsername.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelUsername.setText("jLabel2");
 
+        jButtonLeaveForm.setText("Leave Request");
+        jButtonLeaveForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLeaveFormActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -281,15 +289,17 @@ public class EmployeeListPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabelInputError))
-                    .addComponent(jButtonRetrun))
+                    .addComponent(jButtonRetrun)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jButtonLeaveForm)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelUserProfile)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -340,7 +350,9 @@ public class EmployeeListPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonDelete)
                     .addComponent(jButtonClear))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLeaveForm)
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabelUserProfile)
@@ -504,6 +516,12 @@ public class EmployeeListPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonRetrunActionPerformed
 
+    private void jButtonLeaveFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveFormActionPerformed
+        // TODO add your handling code here:
+        LeaveRequestForm leaveForm = new LeaveRequestForm();
+        leaveForm.setVisible(true);
+    }//GEN-LAST:event_jButtonLeaveFormActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -543,6 +561,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonLeaveForm;
     private javax.swing.JButton jButtonRetrun;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JButton jButtonView;
