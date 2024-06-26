@@ -16,25 +16,11 @@ import javax.swing.event.*;
 public class Input {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yy");    
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-    
-    public String validateNumber(JTextField textField, String fieldName) {
-//        String text = textField.getText().replace("-", "");
-        try {
-//            Long value = Long.parseLong(text);
-//            int valueDigits = text.length();
-//            if (valueDigits != count) {
-//                return fieldName + " must be between " + count + " digits.\n";
-//            }
-        } catch (NumberFormatException e) {
-            return fieldName + " Invalid Input.\n";
-        }
-        return "";
-    }
-    
+           
     public String validateNumber(JTextField textField, String fieldName, int count) {
         String text = textField.getText().replace("-", "");
         try {
-//            Long value = Long.parseLong(text);
+            Long value = Long.parseLong(text);
             int valueDigits = text.length();
             if (valueDigits != count) {
                 return fieldName + " must be between " + count + " digits.\n";
@@ -78,12 +64,6 @@ public class Input {
         private String fieldName;
         private int count;
         
-        public ValidationListener(JTextField textField, JLabel errorLabel, String fieldName) {
-            this.textField = textField;
-            this.errorLabel = errorLabel;
-            this.fieldName = fieldName;
-        }
-        
         public ValidationListener(JTextField textField, JLabel errorLabel, String fieldName, int count) {
             this.textField = textField;
             this.errorLabel = errorLabel;
@@ -112,7 +92,6 @@ public class Input {
             try {
                 Long value = Long.parseLong(text);
                 int valueDigits = text.length();
-                
                 
                 if (valueDigits != count) {
                         errorLabel.setText(fieldName + " Must be " + count + " digits.");

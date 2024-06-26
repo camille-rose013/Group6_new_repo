@@ -4,7 +4,6 @@
  */
 package Class;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -13,6 +12,7 @@ import java.util.*;
  */
 public final class UserAccount {    
     private String userID;
+    private String employeeID;    
     private String username;
     private String password;
     private ArrayList<String[]> userData; // List to store raw user data
@@ -22,6 +22,13 @@ public final class UserAccount {
     private String[] userInfo; // Array to store information about a specific user
 
     // getters and setters
+    public String getEmployeeID() {
+        return employeeID;
+    }
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+    
     public String getUserID() {
         return userID;
     }
@@ -77,6 +84,7 @@ public final class UserAccount {
                 logginInResult = true; // Authentication successful
                 this.username = username;
                 this.password = password;
+                this.employeeID = this.userMap.get(this.username)[1];
             } else {
                 logginInResult = false; // Incorrect password
             }

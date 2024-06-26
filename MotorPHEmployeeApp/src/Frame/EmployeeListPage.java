@@ -456,9 +456,9 @@ public class EmployeeListPage extends javax.swing.JFrame {
             }
         }
         
-        Employee employee = new Employee(employeeInformation);
-        employee.setUserAccount(this.userInfo);
-        AttendancePage attendancePage = new AttendancePage(employee);
+        Employee viewEmployee = new Employee(employeeInformation);
+        viewEmployee.setUserAccount(this.userInfo);
+        AttendancePage attendancePage = new AttendancePage(viewEmployee);
         attendancePage.setVisible(isFound);
         dispose();
         
@@ -518,8 +518,29 @@ public class EmployeeListPage extends javax.swing.JFrame {
 
     private void jButtonLeaveFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveFormActionPerformed
         // TODO add your handling code here:
-        LeaveRequestForm leaveForm = new LeaveRequestForm();
+        boolean isFound = false;
+        String employeeID;
+        String[] employeeInformation = null;
+        
+        employeeFile = new File();
+            employeeList = employeeFile.readFile("src/MotorPH Employee Data - Employee Details.csv");
+        
+        employeeID = this.userInfo.getEmployeeID();       
+               
+        
+        for (String[] i : employeeList) {
+            if (i[0].equals(employeeID)) {
+                isFound = true;
+                employeeInformation = i;
+                break;
+            }
+        }
+        
+        Employee userEmployee = new Employee(employeeInformation);
+        userEmployee.setUserAccount(this.userInfo);
+        LeaveRequestForm leaveForm = new LeaveRequestForm(userEmployee);
         leaveForm.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButtonLeaveFormActionPerformed
 
     /**
