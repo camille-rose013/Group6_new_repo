@@ -130,6 +130,11 @@ public class PayrollPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH - Payroll");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabelPayroll.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelPayroll.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -490,6 +495,12 @@ public class PayrollPage extends javax.swing.JFrame {
         attendancePage.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonRetrunActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        AttendancePage attendancePage = new AttendancePage(employee);
+        attendancePage.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

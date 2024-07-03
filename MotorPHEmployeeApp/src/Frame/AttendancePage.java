@@ -151,6 +151,11 @@ public class AttendancePage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MotorPH - Attendance");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jButtonRetrun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
         jButtonRetrun.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +358,12 @@ public class AttendancePage extends javax.swing.JFrame {
         employeeListPage.setVisible(true);
         dispose(); 
     }//GEN-LAST:event_jButtonRetrunActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
+        employeeListPage.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

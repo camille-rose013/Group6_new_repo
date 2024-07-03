@@ -48,7 +48,7 @@ public class LeaveRequestForm extends javax.swing.JFrame {
                 @Override
                 public void propertyChange(PropertyChangeEvent e) {
                     try {
-                        long dateDifference = jDateChooserEndDate.getDate().getTime() - jDateChooserStartDate.getDate().getTime();
+                        long dateDifference = jDateChooserEndDate.getDate().getTime() - jDateChooserStartDate.getDate().getTime() + 1;
                         jTextFieldNo_daysRequest.setText(Long.toString(TimeUnit.DAYS.convert(dateDifference, TimeUnit.MILLISECONDS)));
                         
                         if (dateDifference < 1) {
@@ -66,7 +66,7 @@ public class LeaveRequestForm extends javax.swing.JFrame {
                 @Override
                 public void propertyChange(PropertyChangeEvent e) {
                     try {
-                        long dateDifference = jDateChooserEndDate.getDate().getTime() - jDateChooserStartDate.getDate().getTime();
+                        long dateDifference = jDateChooserEndDate.getDate().getTime() - jDateChooserStartDate.getDate().getTime() + 1;
                         jTextFieldNo_daysRequest.setText(Long.toString(TimeUnit.DAYS.convert(dateDifference, TimeUnit.MILLISECONDS)));
                     }
                     catch (NullPointerException err) {
@@ -152,6 +152,12 @@ public class LeaveRequestForm extends javax.swing.JFrame {
         jLabelError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("MotorPH - Leave Request Form");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabelTitle.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabelTitle.setText("Leave Request Form");
@@ -421,13 +427,16 @@ public class LeaveRequestForm extends javax.swing.JFrame {
                                         reason,
                                         dateFormat.format(jDateChooserStartDate.getDate()),
                                         dateFormat.format(jDateChooserEndDate.getDate()),
-                                        jTextFieldNo_daysRequest.getText()};
+                                        jTextFieldNo_daysRequest.getText(),
+                                        jTextAreaComment.getText()};
 
             leaveRequestList.add(leaveRequest);
 
             leaveRequestFile.writeFile("src/MotorPH Employee Data - Leave Requests.csv", leaveRequestList);
 
             JOptionPane.showMessageDialog(null, "Successfully Requested Leave");
+            EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
+            employeeListPage.setVisible(true);
             dispose();
         } catch (NullPointerException | NumberFormatException  e) {
             jLabelError.setText("Please provide Valid Leave Dates");
@@ -440,6 +449,12 @@ public class LeaveRequestForm extends javax.swing.JFrame {
     private void jRadioButtonEmergLeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEmergLeaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonEmergLeaveActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
+        employeeListPage.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
