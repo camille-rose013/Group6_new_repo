@@ -389,7 +389,7 @@ public class LeaveRequestForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
         employeeListPage.setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed

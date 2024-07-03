@@ -63,14 +63,10 @@ public class PayrollPage extends javax.swing.JFrame {
         jTextFieldPagIBIG.setText(decimalFormat.format(pagibig));
         jTextFieldWitholdingTax.setText(decimalFormat.format(withHoldingTax)); 
         System.out.print(withHoldingTax);
-        jTextFieldTotalDeductions.setText(decimalFormat.format(totalDeduction));
-               
+        jTextFieldTotalDeductions.setText(decimalFormat.format(totalDeduction));               
         
-        jTextFieldNetSalary.setText(decimalFormat.format(netSalary));
-        
-        
-        
-        
+        jTextFieldNetSalary.setText(decimalFormat.format(netSalary));       
+                     
     }
 
     private PayrollPage() {
@@ -493,7 +489,7 @@ public class PayrollPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         AttendancePage attendancePage = new AttendancePage(employee);
         attendancePage.setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

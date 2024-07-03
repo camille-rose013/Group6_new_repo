@@ -349,14 +349,14 @@ public class AttendancePage extends javax.swing.JFrame {
         
         PayrollPage payrollPage = new PayrollPage(employee);
         payrollPage.setVisible(isThereAttendance());
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_jButtonComputePayrollActionPerformed
 
     private void jButtonRetrunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetrunActionPerformed
         // TODO add your handling code here:
         EmployeeListPage employeeListPage = new EmployeeListPage(this.employee.getUserAccount());
         employeeListPage.setVisible(true);
-        dispose(); 
+        setVisible(false);
     }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

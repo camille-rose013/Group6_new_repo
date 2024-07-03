@@ -465,8 +465,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
         viewEmployee.setUserAccount(this.userInfo);
         AttendancePage attendancePage = new AttendancePage(viewEmployee);
         attendancePage.setVisible(isFound);
-        dispose();
-        
+        setVisible(false);        
     }//GEN-LAST:event_jButtonViewActionPerformed
 
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
@@ -518,7 +517,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         LoginPage loginPage = new LoginPage();
         loginPage.setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_jButtonRetrunActionPerformed
 
     private void jButtonLeaveFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveFormActionPerformed
@@ -545,7 +544,7 @@ public class EmployeeListPage extends javax.swing.JFrame {
         userEmployee.setUserAccount(this.userInfo);
         LeaveRequestForm leaveForm = new LeaveRequestForm(userEmployee);
         leaveForm.setVisible(true);
-        dispose();
+        setVisible(false);
     }//GEN-LAST:event_jButtonLeaveFormActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
